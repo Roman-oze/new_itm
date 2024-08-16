@@ -15,8 +15,8 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h4>Roles
-                        <a href="{{url('permissions/create')}}" class="btn btn-primary float-end">Add Permission</a>
+                    <h4>User
+                        <a href="{{url('users/create')}}" class="btn btn-primary float-end">Add User</a>
                     </h4>
                 </div>
                 <div class="card-body">
@@ -25,19 +25,30 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
+                                <th>Roles</th>
+                                <th>Email</th>
                                 <th>Tools</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($permissions as $permission)
+                            @foreach ($users as $user)
                             <tr>
-                                <td>{{ $permission->id }}</td>
-                                <td>{{ $permission->name }}</td>
+                                <td>{{ $user->id }}</td>
+                                <td>{{ $user->name }}</td>
                                 <td>
-                        <a href="{{url('permissions/'.$permission->id.'/edit')}}" class="btn btn-primary">
+                                    @foreach ($user->roles as $role)
+                                    <span class="badge bg-success">{{ $role->name }}</span>
+                                    @endforeach
+                                </td>
+                                <td>{{ $user->email }}</td>
+                                <td>
+                        {{-- <a href="{{url('roles/'.$role->id.'/give-permission')}}" class="btn btn-info">
+                            Add/Edit Role permission
+                            </a> --}}
+                        <a href="{{url('users/'.$user->id.'/edit')}}" class="btn btn-primary">
                             <i class="fa fa-edit"></i>
                             </a>
-                            <a href="{{url('permissions/'.$permission->id.'/delete')}}" class="btn btn-danger">
+                            <a href="{{url('users/'.$user->id.'/delete')}}" class="btn btn-danger">
 
                                 <i class="fa fa-trash"></i>
                                 </a>
