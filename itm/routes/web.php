@@ -9,22 +9,31 @@ Route::get('/', function () {
 });
 
 
-route::group(['middleware'=>'auth'] ,function(){
+// route::group(['middleware'=>['auth','role:super-admin'|'faculty-member']] ,function(){
 
-    route::resource('permissions',App\Http\Controllers\PermissionController::class);
-    route::get('permissions/{id}/delete',[App\Http\Controllers\PermissionController::class,'destroy']);
+//     route::resource('permissions',App\Http\Controllers\PermissionController::class);
+//     route::get('permissions/{id}/delete',[App\Http\Controllers\PermissionController::class,'destroy']);
 
-    route::resource('roles',App\Http\Controllers\RoleController::class);
-    route::get('roles/{roleId}/delete',[App\Http\Controllers\RoleController::class,'destroy']);
-    route::get('roles/{roleId}/give-permission',[App\Http\Controllers\RoleController::class,'addPermissionToRole']);
-    route::put('roles/{roleId}/give-permission',[App\Http\Controllers\RoleController::class,'updatePermissionToRole']);
+//     route::resource('roles',App\Http\Controllers\RoleController::class);
+//     route::get('roles/{roleId}/delete',[App\Http\Controllers\RoleController::class,'destroy']);
+//     route::get('roles/{roleId}/give-permission',[App\Http\Controllers\RoleController::class,'addPermissionToRole']);
+//     route::put('roles/{roleId}/give-permission',[App\Http\Controllers\RoleController::class,'updatePermissionToRole']);
 
-    route::resource('users',App\Http\Controllers\UserController::class);
-    route::get('users/{userId}/delete',[App\Http\Controllers\UserController::class,'destroy']);
+//     route::resource('users',App\Http\Controllers\UserController::class);
+//     route::get('users/{userId}/delete',[App\Http\Controllers\UserController::class,'destroy']);
 
+// });
 
-});
+route::resource('permissions',App\Http\Controllers\PermissionController::class);
+route::get('permissions/{id}/delete',[App\Http\Controllers\PermissionController::class,'destroy']);
 
+route::resource('roles',App\Http\Controllers\RoleController::class);
+route::get('roles/{roleId}/delete',[App\Http\Controllers\RoleController::class,'destroy']);
+route::get('roles/{roleId}/give-permission',[App\Http\Controllers\RoleController::class,'addPermissionToRole']);
+route::put('roles/{roleId}/give-permission',[App\Http\Controllers\RoleController::class,'updatePermissionToRole']);
+
+route::resource('users',App\Http\Controllers\UserController::class);
+route::get('users/{userId}/delete',[App\Http\Controllers\UserController::class,'destroy']);
 
 
 
